@@ -10,9 +10,9 @@ export default function Orders() {
   )
   const[sortOrder,setSortOrder]=useState("asc")
   const sortedOrders = filterOrders.sort((a, b) => {
-    if (sortOrder === "asc")  return a.price - b.price
-    if (sortOrder === "desc")  return b.price - a.price
-    })
+    if (sortOrder === "asc") return a.total - b.total
+    if (sortOrder === "desc") return b.total - a.total
+  })
   
   const[loading,setLoading]=useState(true)
 
@@ -42,8 +42,8 @@ export default function Orders() {
     <span><FiSearch /></span>
     </div>
       <div className="sort-buttons">
-        <button onClick={() => setSortOrder("asc")}>價格由低到高</button>
-        <button onClick={() => setSortOrder("desc")}>價格由高到低</button>
+        <button onClick={() => setSortOrder("asc")}>總金額由低到高</button>
+        <button onClick={() => setSortOrder("desc")}>總金額由高到低</button>
       </div>
       <div className="table-section">
       <h1>訂單頁面</h1>
