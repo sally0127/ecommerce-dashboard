@@ -20,6 +20,7 @@ export default function Products() {
     fetchProducts();
   }, []);
 
+  // 如果選擇全部就顯示所有商品，否則過濾出對應分類
   const filteredProducts = selectedCategory === "all"
     ? products
     : products.filter(p => p.category === selectedCategory)

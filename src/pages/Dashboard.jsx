@@ -4,8 +4,14 @@ export default function Dashboard() {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const totalProducts = products.length
+
+  //計算所有商品的平均價格
   const avgPrice = (products.reduce((sum, p) => sum + p.price, 0) / products.length).toFixed(2)
+
+  //計算所有商品的平均評分
   const avgRating = (products.reduce((sum, p) => sum + p.rating, 0) / products.length).toFixed(1)
+
+  //用DummyJSON API拿商品資料
   useEffect(() => {
     fetch('https://dummyjson.com/products')
       .then(r => r.json())

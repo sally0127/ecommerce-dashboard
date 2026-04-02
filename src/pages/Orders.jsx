@@ -16,6 +16,7 @@ export default function Orders() {
   
   const[loading,setLoading]=useState(true)
 
+  // 用餘數運算子讓每筆訂單有固定狀態，避免每次重新整理都變動
   const statuses = ["待付款", "已出貨", "已完成", "未出貨"]
   const statusColor={
     "待付款":"red",
@@ -61,7 +62,9 @@ export default function Orders() {
               <td>{product.id}</td>
               <td>{product.total}</td>
               <td>{product.userId}</td>
-              <td style={{ color: statusColor[statuses[product.id % statuses.length]] }}>{statuses[product.id % statuses.length]}</td>
+              <td style={{ color: statusColor[statuses[product.id % statuses.length]] }}>
+              {/* 用餘數運算子讓每筆訂單有固定狀態，避免每次重新整理都變動 */}
+              {statuses[product.id % statuses.length]}</td> 
               <td>{product.date}</td>
             </tr>
           ))}
