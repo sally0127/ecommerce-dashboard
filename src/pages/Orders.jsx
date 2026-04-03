@@ -24,6 +24,24 @@ export default function Orders() {
     "未出貨":"orange",
     "已出貨":"blue",
   }
+
+  const [total, setTotal] = useState('')
+  const [userId, setUserId] = useState('')
+  const [status, setStatus] = useState('待付款')
+  const handleAddOrder = () =>{
+    //新增一筆訂單到orders陣列
+    const newOrder = {
+      id: orders.length + 1,
+      total: Number(total),
+      userId: Number(userId),
+    }
+    setOrders([...orders, newOrder])
+    //清空輸入框
+    setTotal('')
+    setUserId('')
+    setStatus('待付款')
+  }
+  
   useEffect(()=>{
     fetch("https://dummyjson.com/carts")
       .then(response => response.json())
@@ -41,6 +59,18 @@ export default function Orders() {
       <input type="text" placeholder="搜尋訂單編號" value={search} onChange={e=>setSearch(e.target.value)} />
     <span><FiSearch /></span>
     </div>
+      <div className="add-order-form">
+        <h2>新增訂單</h2>
+        <select value={status} onChange={e => setStatus(e.target.value)}>
+          <option value="待付款">待付款</option>
+          <option value="已出貨">已出貨</option>
+          <option value="已完成">已完成</option>
+          <option value="未出貨">未出貨</option>
+        </select>
+        <input type="text" placeholder="總金額" value={total} onChange={e => setTotal(e.target.value)} />
+        <input type="text" placeholder="用戶編號" value={userId} onChange={e => setUserId(e.target.value)} />
+        <button onClick={handleAddOrder}>新增訂單</button>
+      </div>
       <div className="sort-buttons">
         <button onClick={() => setSortOrder("asc")}>總金額由低到高</button>
         <button onClick={() => setSortOrder("desc")}>總金額由高到低</button>

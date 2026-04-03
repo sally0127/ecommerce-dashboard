@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react'
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts'
+
 
 export default function Dashboard() {
   const [products, setProducts] = useState([])
@@ -11,6 +13,22 @@ export default function Dashboard() {
   //計算所有商品的平均評分
   const avgRating = (products.reduce((sum, p) => sum + p.rating, 0) / products.length).toFixed(1)
 
+  //將每個商品進行分類
+  const groupedByCategory = products.reduce((acc, product) => {
+    const category = product.category
+    if (!acc[category]) {
+      acc[category] = []
+    }
+    acc[category].push(product)
+    return acc
+  }, {})
+
+  //計算各分類平均
+  const chartData = Object.keys(groupedByCategory).map(category => ({
+    category,
+    avgRating: (groupedByCategory[category].reduce((sum, p) => sum + p.rating, 0) / groupedByCategory[category].length).toFixed(1)
+  }))
+
   //用DummyJSON API拿商品資料
   useEffect(() => {
     fetch('https://dummyjson.com/products')
@@ -20,6 +38,7 @@ export default function Dashboard() {
         setLoading(false)
       })
     },[])
+
   if (loading) return <div>載入中...</div>
   return (
     <div>
@@ -64,6 +83,17 @@ export default function Dashboard() {
         </tbody>
       </table>
     </div>
+    <div className="chart-section">
+      <h2>各分類平均評分</h2>
+      <LineChart width={600} height={300} data={chartData}>
+        <CartesianGrid />
+        <XAxis dataKey="category" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Line dataKey="avgRating" stroke="#d97557" />
+      </LineChart>
+      </div>
   </div>
   )
   }

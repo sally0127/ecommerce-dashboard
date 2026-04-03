@@ -24,6 +24,7 @@ body {
   gap: 8px;
   border-radius: 16px;
   margin: 16px;
+  align-self: flex-start;
 }
 
 
@@ -57,6 +58,7 @@ main {
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   margin-bottom: 24px;
+  text-align: center;
 }
 
 .kpi-card {
@@ -163,6 +165,8 @@ tr:last-child td {
   font-size: 13px;
   cursor: pointer;
   transition: background 0.2s;
+  margin-top: 16px;
+  margin-bottom: 16px;
 }
 
 .sort-buttons button:hover {
@@ -293,4 +297,67 @@ tr:last-child td {
 .product-detail-rating {
   font-size: 16px;
   color: #888;
+}
+
+.chart-section {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  margin-top: 24px;
+}
+
+.chart-section h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.add-order-form {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  margin-top: 24px;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+}
+.add-order-form h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.add-order-form input,
+.add-order-form select {
+  padding: 10px 16px;
+  border: 1px solid #e0ddd8;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #333;
+  outline: none;
+  background-color: #f5f6fa;
+  width: 120px;
+}
+
+.add-order-form input:focus,
+.add-order-form select:focus {
+  border-color: #d97557;
+}
+
+.add-order-form button {
+  background-color: #d97557;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.add-order-form button:hover {
+  background-color: #c4663e;
 }
