@@ -37,6 +37,7 @@ export default function Dashboard() {
         setProducts(data.products)
         setLoading(false)
       })
+      .catch(error => console.error('API 失敗：', error))
     },[])
 
   if (loading) return <div>載入中...</div>

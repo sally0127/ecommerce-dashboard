@@ -13,6 +13,7 @@ useEffect(() => {
       setProduct(data)
       setLoading(false)
     })
+    .catch(error => console.error('API 失敗：', error))
 }, [id])
 
   if (loading) return <div>載入中...</div>

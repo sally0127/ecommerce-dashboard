@@ -9,15 +9,13 @@ export default function Products() {
   const [search, setSearch] = useState("")
 
   useEffect(() => {
-    // Simulate an API call to fetch products
-    const fetchProducts = async () => {
-      // Replace this with your actual API call
-      const response = await fetch('https://dummyjson.com/products');
-      const data = await response.json();
-      setProducts(data.products);
-      setLoading(false);
-    };
-    fetchProducts();
+    fetch('https://dummyjson.com/products')
+      .then(response => response.json())
+      .then(data => {
+        setProducts(data.products);
+        setLoading(false);
+      })
+      .catch(error => console.error('API 失敗：', error));
   }, []);
 
   // 如果選擇全部就顯示所有商品，否則過濾出對應分類

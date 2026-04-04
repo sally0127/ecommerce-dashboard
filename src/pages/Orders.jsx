@@ -48,8 +48,9 @@ export default function Orders() {
       .then(data => {
         setOrders(data.carts);
         setLoading(false);
-      });
-  }, []);
+      })
+      .catch (error => console.error('API 失敗：', error))
+    },[]);
 
   if (loading) return <div>載入中...</div>;
 
