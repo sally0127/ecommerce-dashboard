@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts'
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 
 
 export default function Dashboard() {
@@ -61,7 +61,7 @@ export default function Dashboard() {
           <p>{avgRating}/5</p>
         </div>
       </div>
-      <div className="table-section">
+      <div className="table-section desktop-only">
         <h2>熱銷商品</h2>
         <table>
           <thead>
@@ -84,16 +84,40 @@ export default function Dashboard() {
         </tbody>
       </table>
     </div>
+    {/*巢狀map*/}
+    <div className="mobile-only">
+        {
+        //拿到所有分類名稱，["beauty","laptops","smartphones",...]，並對每個分類跑.map()
+        }
+        {Object.keys(groupedByCategory).map(category => (
+          //每個分類一個白色框框//
+          <div key={category} className="category-group">
+            <h3>{category}</h3>
+            {
+            //對每個分類裡的商品跑.map()//
+            }
+            {groupedByCategory[category].map(product => (
+              <div key={product.id} className="category-item">
+                <p>{product.title}</p>
+                <p>${product.price}</p>
+                <p>⭐ {product.rating}</p>
+              </div>
+            ))}
+          </div>
+        ))}
+    </div>
     <div className="chart-section">
       <h2>各分類平均評分</h2>
-      <LineChart width={600} height={300} data={chartData}>
-        <CartesianGrid />
-        <XAxis dataKey="category" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
+      <ResponsiveContainer width="100%" height={300}>
+        <LineChart data={chartData}>
+          <CartesianGrid />
+          <XAxis dataKey="category" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
         <Line dataKey="avgRating" stroke="#d97557" />
       </LineChart>
+    </ResponsiveContainer>
       </div>
   </div>
   )
