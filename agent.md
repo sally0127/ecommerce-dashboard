@@ -12,26 +12,43 @@
 
 ## 檔案結構
 ecommerce-dashboard/
+
 ├── public/
+
 ├── src/
+
 │   ├── components/
+
 │   │   └── Sidebar.jsx
 │   ├── data/
+
 │   │   └── mockData.js
 │   ├── pages/
+
 │   │   ├── Dashboard.jsx
+
 │   │   ├── Orders.jsx
+
 │   │   ├── Products.jsx
+
 │   │   └── ProductDetail.jsx
 │   ├── App.jsx
+
 │   ├── App.css
+
 │   ├── index.css
+
 │   └── main.jsx
 ├── .env
+
 ├── .gitignore
+
 ├── agent.md
+
 ├── index.html
+
 ├── package.json
+
 └── vite.config.js
 
 ## 開發規則
